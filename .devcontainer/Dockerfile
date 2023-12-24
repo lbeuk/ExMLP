@@ -1,4 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/base:jammy
 RUN apt update && apt install -y build-essential curl libffi-dev libffi8ubuntu1 libgmp-dev libgmp10 libncurses-dev
-RUN sudo -u vscode sh -c "export BOOTSTRAP_HASKELL_NONINTERACTIVE=\"t\"; export BOOTSTRAP_HASKELL_ADJUST_BASHRC=\"t\"; curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
-# RUN sudo -u vscode sh -c "ghcup install hls"
+COPY ./setup_root.sh /opt/setup_root.sh
+COPY ./setup_user.sh /opt/setup_user.sh
+RUN sh /opt/setup_root.sh
+USER vscode
+RUN sh /opt/setup_user.sh
