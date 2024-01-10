@@ -1,6 +1,4 @@
-{-# LANGUAGE ScopedTypeVariables #-}
-
-module FileParser.PcapParser (pcapParser) where
+module Parser.File_Pcap where
 
 import Conversion (Conversion (convert))
 import Data.Binary.Get
@@ -14,12 +12,10 @@ import Data.ByteString.Lazy as BS
 import Data.Int (Int32, Int64)
 import Data.Map (fromList)
 import Data.Word (Word16, Word32)
-import FileParser (FileParser)
 import Numeric (showHex)
 import Data.CaptureDict (CaptureDict (CaptureDict), CaptureDictData (Str))
 import qualified Data.IntMap as IM
-import ProtocolParser (RawPacket(..))
-import Protocols (NetProtocol (NetProtocolL2, NoProtocol), L2Protocol (Ethernet))
+-- import Protocols (NetProtocol (NetProtocolL2, NoProtocol), L2Protocol (Ethernet))
 
 -- Maps network field to corresponding protocol
 rootProtocol :: Word32 -> NetProtocol

@@ -23,20 +23,24 @@ extra-source-files: CHANGELOG.md
 
 library
     exposed-modules:
-        Data.IPAddr,
         Data.CaptureDict,
-        FileParser.ParseFile
-        FileParser.PcapParser,
-        FileParser,
-        ProtocolParser,
-        Protocols
+        Data.IPAddr,
+        Data.MACAddr,
+        Data.Queue,
+        Parser.EndpointID,
+        Parser.File+Pcap,
+        Parser.Signature,
+        Parser
     build-depends:
         base ^>=4.17.2.0,
         containers,
         bytestring,
         binary,
         conversion,
-        regex-tdfa
+        -- RegEx support
+        regex-tdfa,
+        -- State monad support
+        mtl
     hs-source-dirs:   src
 
 
