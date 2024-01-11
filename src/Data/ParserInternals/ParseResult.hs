@@ -1,10 +1,11 @@
 module Data.ParserInternals.ParseResult where
-import Data.CaptureDict ( CaptureDict )
+  
 import Data.ParserInternals.ParsableSegment ( ParsableSegment )
+import Data.Sequence (Seq)
+import Data.CaptureDict (CaptureDict)
 
 -- | Result of a parse 
 data ParseResult = ParseResult {
-  parsedData :: [CaptureDict],
-  forwardedData :: [ParsableSegment],
-  terminate :: Bool
+  parsed :: Seq CaptureDict,
+  forwardedData :: Seq ParsableSegment
 }
