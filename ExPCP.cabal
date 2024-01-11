@@ -26,6 +26,7 @@ library
         Data.CaptureDict,
         Data.IPAddr,
         Data.MACAddr,
+        Parser.ByteAccumulator,
         Parser
     build-depends:
         base ^>=4.17.2.0,
