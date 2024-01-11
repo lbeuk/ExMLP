@@ -1,26 +1,10 @@
-module Parser where
-import Data.ByteString.Lazy
-import Data.CaptureDict ( CaptureDict )
+-- Common dependencies from Data.ParserInternals are re-exported
+module Parser (ParserHandle, ParserFn, makeHandle, ParsableSegment (..), ParseResult (..)) where
 
--- | Signature to identify a segment, used in identifying a parser to feed it to
-data Signature
-  = Ethernet
-  | TCP
-
--- | List of signatures (for stacked protocols)
-type SignatureStack = [Signature]
-
--- | A binary segment with a signature tagged to it
-data ParsableSegment = ParsableSegment {
-  signature :: SignatureStack, 
-  bytes :: ByteString
-}
-
--- | Result of a parse 
-data ParseResult = ParseResult {
-  parsedData :: [CaptureDict],
-  forwardedData :: [ParsableSegment]
-}
+import Data.ByteString.Lazy (ByteString)
+import Data.CaptureDict (CaptureDict)
+import Data.ParserInternals.ParsableSegment (ParsableSegment (..))
+import Data.ParserInternals.ParseResult (ParseResult (..))
 
 -- | Handle for storing a parser
 newtype ParserHandle = ParserHandle (ParsableSegment -> (ParseResult, ParserHandle))
@@ -43,5 +27,5 @@ makeHandle helper def =
     makeHandleInner helper st segment =
       -- When the segment is recieved, this will call the helper of type ParserFn.
       let (res, newSt) = helper st segment
-      -- This takes the result, and creates a new handle with the new state built in.
-      in (res, ParserHandle (makeHandleInner helper newSt))
+       in -- This takes the result, and creates a new handle with the new state built in.
+          (res, ParserHandle (makeHandleInner helper newSt))
