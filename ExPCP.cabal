@@ -23,6 +23,10 @@ extra-source-files: CHANGELOG.md
 
 library
     exposed-modules:
+        -- Listed in order shown on the vscode source tree
+        Data.ParserInternals.ParsableSegment,
+        Data.ParserInternals.ParseResult,
+        Data.ParserInternals.Signature,
         Data.CaptureDict,
         Data.IPAddr,
         Data.MACAddr,
