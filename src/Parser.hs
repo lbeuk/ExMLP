@@ -1,33 +1,28 @@
 module Parser where
+import Data.ByteString.Lazy
+import Control.Monad.State (State)
+import Data.CaptureDict ( CaptureDict )
 
-import Data.ByteString.Lazy (ByteString)
+-- | Signature to identify a segment, used in identifying a parser to feed it to
+data Signature
+  = Ethernet
+  | TCP
 
-type SignatureFilter = [Signature] -> Maybe EndpointID
+-- | List of signatures (for stacked protocols)
+type SignatureStack = [Signature]
 
--- | Passes a signature past a list of filters until a endpoint is found
-endpointIDFromSignature :: [Signature] -> [SignatureFilter] -> Maybe EndpointID
-endpointIDFromSignature sig [] -> Nothing
-endpointIDFromSignature sig (filter:t) -> case (filter sig) of
-  Just eid -> Just eid
-  Nothing -> endpointIDFromSignature sig t
-
-endpointMapLol :: 
-
-
-type ParseResult
-  = Success Signature
-  | Incomplete
-  | Fail_Reset
-
-type ParserFn = ByteString -> ParseResult
-
-type EndpointMap = Map EndpointID [ByteString]
-
-data ParserState = ParserState {
-  endpoints :: EndpointMap,
-  filters :: [SignatureFilter]
+-- | A binary segment with a signature tagged to it
+data ParsableSegment = ParsableSegment {
+  signature :: SignatureStack, 
+  bytes :: ByteString
 }
 
-process :: ParserState -> ByteString -> ParserState
-process state bs = case (endpointIDFromSignature  () )
-  
+-- | Result of a parse 
+data ParseResult = ParseResult {
+  parsedData :: Maybe CaptureDict,
+  forwardedData :: Maybe ParsableSegment
+}
+
+type ParserState = State ParserFn
+
+newtype ParserFn = ParserFn (ByteString -> ParserState ParseResult)

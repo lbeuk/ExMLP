@@ -26,10 +26,6 @@ library
         Data.CaptureDict,
         Data.IPAddr,
         Data.MACAddr,
-        Data.Queue,
-        Parser.EndpointID,
-        Parser.File+Pcap,
-        Parser.Signature,
         Parser
     build-depends:
         base ^>=4.17.2.0,
