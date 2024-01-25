@@ -35,7 +35,7 @@ library
         Data.CaptureDict,
         Data.IPAddr,
         Data.MACAddr,
-        -- Parser.Impl.ByteAccumulator,
+        Parser.Impl.ByteAccumulator,
         Parser.LinkageAssisted,
         Parser.Unassisted
     build-depends:

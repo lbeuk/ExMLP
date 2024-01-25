@@ -1,4 +1,4 @@
-module Parser.Unassisted where
+module Parser.Unassisted(UnassistedParserFn, makeHandle) where
 import qualified Data.ParserInternals.LinkedData as Linked
 import Data.ParserInternals.ParserHandle ( ParserHandle(..) )
 
