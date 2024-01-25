@@ -5,7 +5,6 @@ import Data.Sequence (Seq)
 import Data.CaptureDict (CaptureDict)
 
 -- | Result of a parse 
-data ParseResult = ParseResult {
-  parsed :: Seq CaptureDict,
-  forwardedData :: Seq ParsableSegment
-}
+data ParseResult = ParseResult CaptureDict (Seq ParsableSegment)
+
+type ParseResults = Seq ParseResult

@@ -1,4 +1,4 @@
-module Parser.ByteAccumulator where
+module Parser.Impl.ByteAccumulator where
 
 import Data.ByteString.Lazy as BS (length)
 import Data.Int (Int64)
@@ -31,6 +31,3 @@ byteAccumulatorParserFn oldOuterSt linkedSeg =
           linked = newLinkage,
           dat = newInnerSt'
         }
-      
- linkParseResult :: ParseResult -> Seq LinkedParsableSegment -> (Linked.LinkedParseResult, Bool)
- linkParseResult ParseResult{}

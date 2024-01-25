@@ -24,6 +24,7 @@ extra-source-files: CHANGELOG.md
 library
     exposed-modules:
         -- Listed in order shown on the vscode source tree
+        Data.ParserInternals.LinkageHelper,
         Data.ParserInternals.LinkedData,
         Data.ParserInternals.ParsableSegment,
         Data.ParserInternals.ParseManager,
@@ -34,8 +35,9 @@ library
         Data.CaptureDict,
         Data.IPAddr,
         Data.MACAddr,
-        Parser.ByteAccumulator,
-        Parser
+        -- Parser.Impl.ByteAccumulator,
+        Parser.LinkageAssisted,
+        Parser.Unassisted
     build-depends:
         base ^>=4.17.2.0,
         containers,

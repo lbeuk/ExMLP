@@ -1,5 +1,5 @@
 module Data.ParserInternals.ParserHandle where
-import Data.ParserInternals.LinkedData (LinkedParsableSegment, LinkedParseResult)
+import Data.ParserInternals.LinkedData (LinkedParsableSegment, LinkedParseResults)
 
 -- | Handle for storing a parser
-newtype ParserHandle = ParserHandle (LinkedParsableSegment -> (LinkedParseResult, Maybe ParserHandle))
+newtype ParserHandle = ParserHandle (LinkedParsableSegment -> (LinkedParseResults, Maybe ParserHandle))
