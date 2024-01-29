@@ -3,10 +3,10 @@ import qualified Data.ParserInternals.LinkedData as Linked
 import Data.ParserInternals.ParserHandle ( ParserHandle(..) )
 
 -- | Inner function that is implemented to construct parser
-type UnassistedParserFn a = a -> Linked.LinkedParsableSegment -> (Linked.LinkedParseResults, Maybe a)
+type UnassistedParserFn out a = a -> Linked.LinkedParsableSegment out -> (Linked.LinkedParseResults out, Maybe a)
 
 -- | Transforms a ParserFn with a default state value into a handle
-makeHandle :: UnassistedParserFn a -> a -> ParserHandle
+makeHandle :: UnassistedParserFn out a -> a -> ParserHandle out
 makeHandle helper def =
   ParserHandle (makeHandleInner helper def)
   where
@@ -16,7 +16,7 @@ makeHandle helper def =
     -- function created takes in a segment, and this returns a tuple
     -- containing the result of the parse from that segment, as well as
     -- an updated handle with the new parser state.
-    makeHandleInner :: UnassistedParserFn a -> a -> Linked.LinkedParsableSegment -> (Linked.LinkedParseResults, Maybe ParserHandle)
+    makeHandleInner :: UnassistedParserFn out a -> a -> Linked.LinkedParsableSegment out -> (Linked.LinkedParseResults out, Maybe (ParserHandle out))
     makeHandleInner helper st segment =
       -- When the segment is recieved, this will call the helper of type ParserFn.
       let (res, newSt) = helper st segment

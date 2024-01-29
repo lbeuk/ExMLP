@@ -13,9 +13,9 @@ import Data.ParserInternals.LinkageHelper ( LinkageHelper(..) )
 import Parser.LinkageAssisted (LinkageAssistedParserFn, makeHandle)
 
 -- | Basic example parser that accumulates the number of bytes read
-byteAccumulatorParser :: ParserHandle
+byteAccumulatorParser :: ParserHandle Int64
 byteAccumulatorParser = makeHandle byteAccumulatorParserFn 0
 
-byteAccumulatorParserFn :: LinkageAssistedParserFn Int64
+byteAccumulatorParserFn :: LinkageAssistedParserFn Int64 Int64
 byteAccumulatorParserFn st segment = 
   (fromList [], Just ( st + BS.length (bytes segment)))

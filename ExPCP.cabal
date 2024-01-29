@@ -32,7 +32,6 @@ library
         Data.ParserInternals.ParserHandle,
         Data.ParserInternals.Reciever,
         Data.ParserInternals.Signature,
-        Data.CaptureDict,
         Data.IPAddr,
         Data.MACAddr,
         Parser.Impl.ByteAccumulator,

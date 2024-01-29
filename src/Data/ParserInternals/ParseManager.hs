@@ -3,7 +3,7 @@ module Data.ParserInternals.ParseManager where
 import Data.Map
 import Data.Map as M (Map, delete, insert, lookup)
 import qualified Data.ParserInternals.LinkedData as Linked
-  ( LinkedCaptureDict,
+  ( LinkedOutput,
     LinkedParsableSegment,
     forwardedData,
     parsedData,
@@ -13,38 +13,38 @@ import Data.ParserInternals.Reciever
     ( RecieverID, Reciever(def, rid) )
 import Data.Sequence (Seq, (><))
 
-type RecieverMap = Map RecieverID ParserHandle
+type RecieverMap out = Map RecieverID (ParserHandle out)
 
 -- | Function that attempts to identify a segment
-type RecieverIdentifier = Linked.LinkedParsableSegment -> Maybe Reciever
+type RecieverIdentifier out = Linked.LinkedParsableSegment out -> Maybe (Reciever out)
 
 -- | Checks a segment against a chain of identifers and attempts to find a reciever
-identifyReciever :: Linked.LinkedParsableSegment -> [RecieverIdentifier] -> Maybe Reciever
+identifyReciever :: Linked.LinkedParsableSegment out -> [RecieverIdentifier out] -> Maybe (Reciever out)
 identifyReciever _ [] = Nothing
 identifyReciever seg (identifier : t) = case identifier seg of
   Nothing -> identifyReciever seg t
   Just id -> Just id
 
 -- | Manager for the parsing process
-data ParseManager = ParseManager
+data ParseManager out = ParseManager
   { -- | Map of recievers that are currently open
-    activeRecievers :: RecieverMap,
+    activeRecievers :: RecieverMap out,
     -- | List of identifier functions to identify inactive recievers
-    recieverIdentifiers :: [RecieverIdentifier],
+    recieverIdentifiers :: [RecieverIdentifier out],
     -- | ParsableSegments waiting to be processed
-    parseQueue :: Seq Linked.LinkedParsableSegment,
+    parseQueue :: Seq (Linked.LinkedParsableSegment out),
     -- | Parsed data
-    parsedData :: Seq Linked.LinkedCaptureDict
+    parsedData :: Seq (Linked.LinkedOutput out)
   }
 
 -- | Parse a ParsableSegment and update parser
-parse :: Linked.LinkedParsableSegment -> ParseManager -> ParseManager
+parse :: Linked.LinkedParsableSegment out -> ParseManager out -> ParseManager out
 parse segment parser =
   let identifier = identifyReciever segment (recieverIdentifiers parser)
    in parseWithIdentifer identifier segment parser
   where
     -- \| Create new parser
-    parseWithIdentifer :: Maybe Reciever -> Linked.LinkedParsableSegment -> ParseManager -> ParseManager
+    parseWithIdentifer :: Maybe (Reciever out) -> Linked.LinkedParsableSegment out -> ParseManager out -> ParseManager out
     parseWithIdentifer Nothing _ parser = parser
     parseWithIdentifer (Just reciever) segment parser =
       let oldRecieverMap = activeRecievers parser
@@ -58,13 +58,13 @@ parse segment parser =
             }
 
     -- \| Assists in getting the handle of a reciever, returning any active handle before returning a fresh one
-    getHandle :: Reciever -> ParseManager -> ParserHandle
+    getHandle :: Reciever out -> ParseManager out -> ParserHandle out
     getHandle reciever parser =
       case M.lookup (rid reciever) (activeRecievers parser) of
         Nothing -> def reciever -- Default handle for the reciever
         Just handle -> handle -- Existing active handle
 
     -- \| Updates the reciever map with new state
-    updateRecievers :: Maybe ParserHandle -> RecieverID -> RecieverMap -> RecieverMap
+    updateRecievers :: Maybe (ParserHandle out) -> RecieverID -> RecieverMap out -> RecieverMap out
     updateRecievers Nothing rid oldMap = M.delete rid oldMap
     updateRecievers (Just handle) rid oldMap = M.insert rid handle oldMap

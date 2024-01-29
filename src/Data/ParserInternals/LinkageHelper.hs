@@ -3,7 +3,7 @@ import Data.Sequence (Seq)
 import Data.ParserInternals.LinkedData (LinkedParsableSegment)
 
 -- | Helper data structure for linkage assisted parsers
-data LinkageHelper a = LinkageHelper {
-  linked :: Seq LinkedParsableSegment,
+data LinkageHelper out a = LinkageHelper {
+  linked :: Seq (LinkedParsableSegment out),
   dat :: a
 }
