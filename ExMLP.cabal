@@ -1,9 +1,9 @@
 cabal-version:      2.4
-name:               ExPCP
+name:               ExMLP
 version:            0.1.0.0
 
 -- A short (one-line) description of the package.
-synopsis:           Extensible Pcap Parser
+synopsis:           Extensible Multi-Level Parser
 
 -- A longer description of the package.
 -- description:
@@ -42,15 +42,11 @@ library
         containers,
         bytestring,
         binary,
-        conversion,
-        -- RegEx support
-        regex-tdfa,
-        -- State monad support
-        mtl
+        conversion
     hs-source-dirs:   src
 
 
-executable ExPCP
+executable ExMLP
     main-is:          Main.hs
 
     -- Modules included in this executable, other than Main.
@@ -59,7 +55,7 @@ executable ExPCP
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
     build-depends:
-        ExPCP,
+        ExMLP,
         base ^>=4.17.2.0,
         containers
     hs-source-dirs:   app

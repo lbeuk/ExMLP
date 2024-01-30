@@ -1,4 +1,4 @@
-# Revision history for ExPCP
+# Revision history for ExMLP
 
 ## 0.1.0.0 -- YYYY-mm-dd
 
