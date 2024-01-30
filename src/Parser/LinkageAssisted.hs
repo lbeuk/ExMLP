@@ -1,14 +1,14 @@
 module Parser.LinkageAssisted where
 
-import Data.ParserInternals.LinkageHelper (LinkageHelper (..))
-import Data.ParserInternals.LinkedData
+import Data.ExMLP.LinkageHelper (LinkageHelper (..))
+import Data.ExMLP.LinkedData
   ( LinkedParsableSegment (LinkedParsableSegment, segment),
     LinkedParseResult (LinkedParseResult),
     linkParseResult,
   )
-import Data.ParserInternals.ParsableSegment (ParsableSegment)
-import Data.ParserInternals.ParseResult (ParseResults)
-import Data.ParserInternals.ParserHandle (ParserHandle)
+import Data.ExMLP.ParsableSegment (ParsableSegment)
+import Data.ExMLP.ParseResult (ParseResults)
+import Data.ExMLP.ParserHandle (ParserHandle)
 import Data.Sequence (Seq, empty, mapWithIndex, (|>))
 import qualified Parser.Unassisted as Unassisted
 

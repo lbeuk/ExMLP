@@ -1,6 +1,6 @@
-module Data.ParserInternals.ParseResult where
+module Data.ExMLP.ParseResult where
   
-import Data.ParserInternals.ParsableSegment ( ParsableSegment )
+import Data.ExMLP.ParsableSegment ( ParsableSegment )
 import Data.Sequence (Seq)
 
 -- | Result of a parse 

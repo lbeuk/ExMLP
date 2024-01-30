@@ -1,4 +1,4 @@
-module Data.MACAddr where
+module Data.NetParser.MACAddr where
 
 import Data.Binary (Word8)
 import Data.List (intercalate)

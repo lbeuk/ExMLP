@@ -1,6 +1,6 @@
-module Data.ParserInternals.LinkageHelper where
+module Data.ExMLP.LinkageHelper where
 import Data.Sequence (Seq)
-import Data.ParserInternals.LinkedData (LinkedParsableSegment)
+import Data.ExMLP.LinkedData (LinkedParsableSegment)
 
 -- | Helper data structure for linkage assisted parsers
 data LinkageHelper out a = LinkageHelper {

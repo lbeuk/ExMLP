@@ -1,6 +1,6 @@
-module Data.ParserInternals.Reciever where
+module Data.ExMLP.Reciever where
 
-import Data.ParserInternals.ParserHandle (ParserHandle)
+import Data.ExMLP.ParserHandle (ParserHandle)
 
 data Reciever out = Reciever
   { rid :: RecieverID,

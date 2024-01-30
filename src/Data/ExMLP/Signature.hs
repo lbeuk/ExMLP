@@ -1,4 +1,4 @@
-module Data.ParserInternals.Signature where
+module Data.ExMLP.Signature where
 
 -- | Signature to identify a segment, used in identifying a parser to feed it to
 data Signature

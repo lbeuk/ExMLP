@@ -24,17 +24,14 @@ extra-source-files: CHANGELOG.md
 library
     exposed-modules:
         -- Listed in order shown on the vscode source tree
-        Data.ParserInternals.LinkageHelper,
-        Data.ParserInternals.LinkedData,
-        Data.ParserInternals.ParsableSegment,
-        Data.ParserInternals.ParseManager,
-        Data.ParserInternals.ParseResult,
-        Data.ParserInternals.ParserHandle,
-        Data.ParserInternals.Reciever,
-        Data.ParserInternals.Signature,
-        Data.IPAddr,
-        Data.MACAddr,
-        Parser.Impl.ByteAccumulator,
+        Data.ExMLP.LinkageHelper,
+        Data.ExMLP.LinkedData,
+        Data.ExMLP.ParsableSegment,
+        Data.ExMLP.ParseManager,
+        Data.ExMLP.ParseResult,
+        Data.ExMLP.ParserHandle,
+        Data.ExMLP.Reciever,
+        Data.ExMLP.Signature,
         Parser.LinkageAssisted,
         Parser.Unassisted
     build-depends:
@@ -44,21 +41,5 @@ library
         binary,
         conversion
     hs-source-dirs:   src
-
-
-executable ExMLP
-    main-is:          Main.hs
-
-    -- Modules included in this executable, other than Main.
-    -- other-modules:
-
-    -- LANGUAGE extensions used by modules in this package.
-    -- other-extensions:
-    build-depends:
-        ExMLP,
-        base ^>=4.17.2.0,
-        containers
-    hs-source-dirs:   app
-    default-language: Haskell2010
 
 

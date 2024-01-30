@@ -1,4 +1,4 @@
-module Data.IPAddr where
+module Data.NetParser.IPAddr where
 
 import Data.List (intercalate)
 import Data.Word (Word16, Word8)

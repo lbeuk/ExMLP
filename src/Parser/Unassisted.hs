@@ -1,6 +1,6 @@
 module Parser.Unassisted(UnassistedParserFn, makeHandle) where
-import qualified Data.ParserInternals.LinkedData as Linked
-import Data.ParserInternals.ParserHandle ( ParserHandle(..) )
+import qualified Data.ExMLP.LinkedData as Linked
+import Data.ExMLP.ParserHandle ( ParserHandle(..) )
 
 -- | Inner function that is implemented to construct parser
 type UnassistedParserFn out a = a -> Linked.LinkedParsableSegment out -> (Linked.LinkedParseResults out, Maybe a)

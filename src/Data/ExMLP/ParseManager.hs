@@ -1,15 +1,15 @@
-module Data.ParserInternals.ParseManager where
+module Data.ExMLP.ParseManager where
 
 import Data.Map
 import Data.Map as M (Map, delete, insert, lookup)
-import qualified Data.ParserInternals.LinkedData as Linked
+import qualified Data.ExMLP.LinkedData as Linked
   ( LinkedOutput,
     LinkedParsableSegment,
     forwardedData,
     parsedData,
   )
-import Data.ParserInternals.ParserHandle ( ParserHandle(..) )
-import Data.ParserInternals.Reciever
+import Data.ExMLP.ParserHandle ( ParserHandle(..) )
+import Data.ExMLP.Reciever
     ( RecieverID, Reciever(def, rid) )
 import Data.Sequence (Seq, (><))
 

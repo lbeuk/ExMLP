@@ -1,7 +1,7 @@
-module Data.ParserInternals.LinkedData where
+module Data.ExMLP.LinkedData where
 
-import Data.ParserInternals.ParsableSegment (ParsableSegment)
-import Data.ParserInternals.ParseResult
+import Data.ExMLP.ParsableSegment (ParsableSegment)
+import Data.ExMLP.ParseResult
 import Data.Sequence (Seq, empty, foldlWithIndex, mapWithIndex, (><), (|>))
 
 data LinkedOutput out = LinkedOutput

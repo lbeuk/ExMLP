@@ -1,7 +1,7 @@
-module Data.ParserInternals.ParsableSegment where
+module Data.ExMLP.ParsableSegment where
 
 import Data.ByteString.Lazy (ByteString)
-import Data.ParserInternals.Signature (SignatureStack)
+import Data.ExMLP.Signature (SignatureStack)
 import Data.Sequence (Seq)
 
 -- | A binary segment with a signature tagged to it
