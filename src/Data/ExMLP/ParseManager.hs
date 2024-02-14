@@ -43,7 +43,7 @@ parse segment parser =
   let identifier = identifyReciever segment (recieverIdentifiers parser)
    in parseWithIdentifer identifier segment parser
   where
-    -- \| Create new parser
+    -- | Create new parser
     parseWithIdentifer :: Maybe (Reciever out) -> Linked.LinkedParsableSegment out -> ParseManager out -> ParseManager out
     parseWithIdentifer Nothing _ parser = parser
     parseWithIdentifer (Just reciever) segment parser =
@@ -57,14 +57,14 @@ parse segment parser =
               parsedData = Linked.parsedData result >< parsedData parser
             }
 
-    -- \| Assists in getting the handle of a reciever, returning any active handle before returning a fresh one
+    -- | Assists in getting the handle of a reciever, returning any active handle before returning a fresh one
     getHandle :: Reciever out -> ParseManager out -> ParserHandle out
     getHandle reciever parser =
       case M.lookup (rid reciever) (activeRecievers parser) of
         Nothing -> def reciever -- Default handle for the reciever
         Just handle -> handle -- Existing active handle
 
-    -- \| Updates the reciever map with new state
+    -- | Updates the reciever map with new state
     updateRecievers :: Maybe (ParserHandle out) -> RecieverID -> RecieverMap out -> RecieverMap out
     updateRecievers Nothing rid oldMap = M.delete rid oldMap
     updateRecievers (Just handle) rid oldMap = M.insert rid handle oldMap
